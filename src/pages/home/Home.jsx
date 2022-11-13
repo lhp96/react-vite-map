@@ -7,8 +7,9 @@ import { getMapDataUtil } from "../../utils/index";
 const Home = () => {
   const [mapList, setMapList] = useState([]);
   const fetchData = async () => {
-    const { data: resData } = await getCovidDataList();
-    const list = getMapDataUtil(resData);
+    const res = await getCovidDataList();
+    const list = getMapDataUtil(res.data);
+    console.log(res);
     list.push({ res: 333 });
     setMapList(list);
   };
@@ -17,7 +18,7 @@ const Home = () => {
   }, []);
   return (
     <>
-      <div>333</div>
+      <div>疫情防控大图</div>
       {mapList.length ? <Map mapList={mapList} /> : null}
     </>
   );
